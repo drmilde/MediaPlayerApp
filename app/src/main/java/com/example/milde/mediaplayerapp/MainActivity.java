@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.milde.mediaplayerapp.service.MediaPlayerService;
@@ -16,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
 
     private MediaPlayerService player;
     private boolean serviceBound = false;
+
+    // Buttons
+
+    private Button btnPlay;
+    private Button btnStop;
+    private Button btnPause;
+    private Button btnLoad;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -39,7 +48,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        playAudio("https://upload.wikimedia.org/wikipedia/commons/6/6c/Grieg_Lyric_Pieces_Kobold.ogg");
+        btnPlay = (Button)findViewById(R.id.btnStart);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playAudio("https://upload.wikimedia.org/wikipedia/commons/6/6c/Grieg_Lyric_Pieces_Kobold.ogg");
+            }
+        });
+
 
     }
 
