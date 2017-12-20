@@ -84,4 +84,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Zustandsspeicherung
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("ServiceState", serviceBound);
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        serviceBound = savedInstanceState.getBoolean("ServiceState");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (serviceBound) {
+            unbindService(serviceConnection); // also sets serviceBound to false
+            player.stopSelf();
+        }
+    }
 }
