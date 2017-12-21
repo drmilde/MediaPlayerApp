@@ -7,8 +7,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
-import android.provider.MediaStore;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
@@ -254,7 +252,7 @@ public class MediaPlayerService extends Service implements
         // check for null pointer exception !!
         try {
             mediaFile = intent.getExtras().getString("media");
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             stopSelf();
         }
 
@@ -286,6 +284,6 @@ public class MediaPlayerService extends Service implements
         // TODO welche Methode muss hier verwendet werden
         return (
                 AudioManager.AUDIOFOCUS_REQUEST_GRANTED == audioManager.abandonAudioFocus(this)
-                );
+        );
     }
 }
